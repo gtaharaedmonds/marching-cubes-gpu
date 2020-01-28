@@ -21,19 +21,10 @@ Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on 
 
 ## Demo Scenes
 
-1. Marching cubes demo with physics (GPU)
+Controls: Mouse to look, WASD to move, E/Q to rise/descend, left click to throw a cube (in physics scenes only). 
 
-  Has a simple grid of terrain with physics enabled. Click to throw cubes at the world. 
-  
-2. Infinite world demo (GPU)
+There are certain scenes that are higher definition which take more performance than the lower detail ones. 
 
-  Demo of the infinite terrain system with LOD enabled. The different colors represent different levels of detail.
-  
-3. Infinite cave demo (GPU)
-
-  Same as the infinite world demo but except inverted so seems like a cave.
-  
-Controls: Mouse to look, WASD to move, E/Q to rise/descend, F to toggle infinite mode, left click to throw a cube (in physics scene only). 
 
 
 ## Notes: 
@@ -41,3 +32,5 @@ Controls: Mouse to look, WASD to move, E/Q to rise/descend, F to toggle infinite
 GPU Marching Cubes src: Assets/Resources
 
 CPU Marching Cubes src: Assets/CPU Version
+
+There is still lots to be done: Physics in infinite mode, better terrain RNG, smooth LOD transitions, real-time modification, optimization
