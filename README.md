@@ -32,6 +32,9 @@ Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on 
 3. Infinite cave demo (GPU)
 
   Same as the infinite world demo but except inverted so seems like a cave.
+  
+Controls: Mouse to look, WASD to move, E/Q to rise/descend, F to toggle infinite mode, left click to throw a cube (in physics scene only). 
+
 
 ## Notes: 
 
