@@ -32,3 +32,8 @@ Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on 
 3. Infinite cave demo (GPU)
 
   Same as the infinite world demo but except inverted so seems like a cave.
+
+## Notes: 
+
+GPU Marching Cubes src: Assets/Resources
+CPU Marching Cubes src: Assets/CPU
