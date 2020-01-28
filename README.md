@@ -37,4 +37,4 @@ Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on 
 
 GPU Marching Cubes src: Assets/Resources
 
-CPU Marching Cubes src: Assets/CPU
+CPU Marching Cubes src: Assets/CPU Version
