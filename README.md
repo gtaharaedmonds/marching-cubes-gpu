@@ -1,10 +1,10 @@
-# marching-cubes
+# Marching Cubes Demo (for CPU/GPU)
 Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on Unity3D. The GPU version is extremely performant and can handle pretty large worlds in real time.
 
 
 
 
-Features:
+## Features:
 
 -Limitless terrain generation for infinite worlds. GPU version can support a view distance of >500m at a respectable resolution
 
@@ -19,7 +19,7 @@ Features:
 
 
 
-There are a few demo scenes: 
+## Demo Scenes
 
 1. Marching cubes demo with physics (GPU)
 
