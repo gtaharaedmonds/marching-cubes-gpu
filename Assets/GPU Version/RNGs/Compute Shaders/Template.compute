@@ -1,0 +1,24 @@
+﻿/*
+	Author: Gus Tahara-Edmonds
+	Date: Summer 2019
+	Purpose: Template script for creating new density behaviours, which is the term I've used for functions which take a point and 
+	3D and spit out a value. If the value is greater than some other number, it is considered "inside". Marching cube algorithm takes this 
+	data and makes faces along this inside/outside border.
+*/
+
+#pragma kernel Evaluate
+
+float3 worldPos;
+int pointsPerAxis;
+float scale;
+
+RWTexture3D<float> densityData;
+
+[numthreads(8,8,8)]
+void Evaluate(uint3 id : SV_DispatchThreadID) {
+	if (id.x >= pointsPerAxis || id.y >= pointsPerAxis || id.z >= pointsPerAxis) {
+		return;
+	}
+
+	densityData[id] = 0; //do smtg here
+}

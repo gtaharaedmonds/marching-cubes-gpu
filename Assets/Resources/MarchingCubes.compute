@@ -1,0 +1,77 @@
+﻿/*
+	Author: Gus Tahara-Edmonds
+	Date: Summer 2019
+	Purpose: The Marching Cubes algorithm. Takes isosurface data and turns it into a polygonal mesh. Works on the 
+	principle that if certain vertices are inside a surface and certain are outside a surface there is a specific set of
+	triangles that properly represents this inside/outside boundary. These set of triangles are stored in a table and so 
+	can be very quickly referenced and outputted to be made into a mesh. This version is implemented in HLSL so runs on 
+	the GPU and is very optimized. It also applies some basic smoothing.
+*/
+
+#pragma kernel March
+#include "/Includes/MarchTables.compute"
+
+Texture3D<float> densityData;
+float surfaceLevel;
+bool smooth;
+bool invert;
+int pointsPerAxis;
+float scale;
+int lodModifier;
+
+struct Triangle {
+	float3 vertexC;
+	float3 vertexB;
+	float3 vertexA;
+};
+
+//output buffer to be recieved by the CPU (only way these discovered triangles can become a proper mesh)
+AppendStructuredBuffer<Triangle> triangles;
+
+//apply smoothing based on the level of density at point 1 and point 2 on an edge
+//pretty simple, just linear interpolation
+float3 interpolateVerts(float3 v1xyz, float3 v2xyz) {
+	float v1d = densityData[v1xyz];
+	float v2d = densityData[v2xyz];
+
+	float t = (surfaceLevel - v1d) / (v2d - v1d);
+	return v1xyz + t * (v2xyz - v1xyz);
+}
+
+[numthreads(8, 8, 8)]
+void March(uint3 id : SV_DispatchThreadID) {
+	//calculate the specific case of this voxel to be created. this depends on if any of the voxel's corners are inside the surface
+	int caseNum = 0;
+	for (int j = 0; j < 8; j++) {
+		float value = densityData[(id + cubeVertOffsets[j]) * lodModifier];
+		
+		if ((invert && value > surfaceLevel) || (!invert && value < surfaceLevel)) {
+			caseNum += pow(2, j);
+		}
+	}
+
+	//look up the case in the table and add all its vertices to the output triangle buffer. also apply some smoothing if desired. 
+	for (int i = 0; triangulation[caseNum][i] != -1; i += 3) {
+		int a0 = cornerIndexAFromEdge[triangulation[caseNum][i]];
+		int b0 = cornerIndexBFromEdge[triangulation[caseNum][i]];
+
+		int a1 = cornerIndexAFromEdge[triangulation[caseNum][i + 1]];
+		int b1 = cornerIndexBFromEdge[triangulation[caseNum][i + 1]];
+
+		int a2 = cornerIndexAFromEdge[triangulation[caseNum][i + 2]];
+		int b2 = cornerIndexBFromEdge[triangulation[caseNum][i + 2]];
+
+		Triangle tri;
+		if (smooth) {
+			tri.vertexA = interpolateVerts((id + cubeVertOffsets[a0]) * lodModifier, (id + cubeVertOffsets[b0]) * lodModifier) * scale;
+			tri.vertexB = interpolateVerts((id + cubeVertOffsets[a1]) * lodModifier, (id + cubeVertOffsets[b1]) * lodModifier) * scale;
+			tri.vertexC = interpolateVerts((id + cubeVertOffsets[a2]) * lodModifier, (id + cubeVertOffsets[b2]) * lodModifier) * scale;
+		}
+		else {
+			tri.vertexA = id + (cubeVertOffsets[a0] + cubeVertOffsets[b0]) / 2.0 * scale;
+			tri.vertexB = id + (cubeVertOffsets[a1] + cubeVertOffsets[b1]) / 2.0 * scale;
+			tri.vertexC = id + (cubeVertOffsets[a2] + cubeVertOffsets[b2]) / 2.0 * scale;
+		}
+		triangles.Append(tri);
+	}
+}

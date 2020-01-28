@@ -1,0 +1,30 @@
+﻿/*
+	Author: Gus Tahara-Edmonds
+	Date: Summer 2019
+	Purpose: Compute shader for creating 3D noise from a texture. Unfinished. 
+*/
+
+#pragma kernel Evaluate
+
+RWTexture3D<float> densityData;
+
+float3 worldPos;
+uint pointsPerAxis;
+float scale;
+
+Texture2D<float4> noiseTex;
+int size;
+
+float SampleNoise(uint2 idxy) {
+	return noiseTex[fmod(idxy * scale, size)].r;
+}
+
+[numthreads(8,8,8)]
+void Evaluate(uint3 id : SV_DispatchThreadID) {
+	if (id.x >= pointsPerAxis || id.y >= pointsPerAxis || id.z >= pointsPerAxis) {
+		return;
+	}
+
+	float3 ws = id + worldPos;
+	densityData[id] = (SampleNoise(ws.xy) + SampleNoise(ws.xz) + SampleNoise(ws.yz) + SampleNoise(ws.yx) + SampleNoise(ws.zx) + SampleNoise(ws.zy)) / 6.0;
+}
