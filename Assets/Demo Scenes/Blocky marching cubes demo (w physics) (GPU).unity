@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compute: {fileID: 7200000, guid: de30f88c89bd8ec4991718e3dcda5772, type: 3}
   pointsPerAxis: 0
-  globalScale: 2
+  globalScale: 1
   octaves:
   - frequency: 0.02
     amplitude: 1
@@ -175,31 +175,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22f9763ec4959141a0fe67e78477db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsPerAxis: 64
-  actualDimension: 128
-  surfaceLevel: -0.005
-  smooth: 1
-  invert: 1
-  infiniteWorld: 1
-  viewDistance: 500
-  fixedChunkDimensions: {x: 1, y: 1, z: 1}
+  voxelsPerAxis: 32
+  actualDimension: 32
+  surfaceLevel: 0.08
+  smooth: 0
+  invert: 0
+  infiniteWorld: 0
+  viewDistance: 0
+  fixedChunkDimensions: {x: 5, y: 5, z: 5}
   lodProfiles:
   - maxActiveDistance: 200
     lodModifier: 1
-    mat: {fileID: 2100000, guid: 376d80b4db355214697cf09240d7e348, type: 2}
-  - maxActiveDistance: 300
-    lodModifier: 2
-    mat: {fileID: 2100000, guid: af90f6b6e7e4d5e44ba6933bf9fa258f, type: 2}
-  - maxActiveDistance: 400
-    lodModifier: 4
-    mat: {fileID: 2100000, guid: 4fa5efb318cbfa2458985706d1a22d13, type: 2}
-  - maxActiveDistance: 500
-    lodModifier: 8
-    mat: {fileID: 2100000, guid: 8f4d898979fb6f34bb792cf842677434, type: 2}
-  - maxActiveDistance: 1000
-    lodModifier: 16
     mat: {fileID: 2100000, guid: 90354e575ea87bb46bc8187f014ecfa6, type: 2}
-  useCollisions: 0
+  useCollisions: 1
 --- !u!4 &8755250
 Transform:
   m_ObjectHideFlags: 0
@@ -287,7 +275,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 3e-45, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -437,10 +425,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67531fd677a186647a070fc24c63bc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 5177178974249610698, guid: b817d174bf0f1f645992ea678f7d1859, type: 3}
   throwStrength: 40

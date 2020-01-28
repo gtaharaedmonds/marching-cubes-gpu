@@ -186,7 +186,7 @@ MonoBehaviour:
   lodProfiles:
   - maxActiveDistance: 200
     lodModifier: 1
-    mat: {fileID: 2100000, guid: 8f4d898979fb6f34bb792cf842677434, type: 2}
+    mat: {fileID: 2100000, guid: 376d80b4db355214697cf09240d7e348, type: 2}
   useCollisions: 1
 --- !u!4 &8755250
 Transform:
@@ -275,7 +275,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.7867e-41, y: 1.02e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.7748326e+28, y: 0, z: 0, w: 1.5e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

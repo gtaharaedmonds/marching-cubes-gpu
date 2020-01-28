@@ -175,13 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22f9763ec4959141a0fe67e78477db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsPerAxis: 64
+  voxelsPerAxis: 32
   actualDimension: 128
   surfaceLevel: 0.09
   smooth: 1
   invert: 0
   infiniteWorld: 1
-  viewDistance: 400
+  viewDistance: 350
   fixedChunkDimensions: {x: 1, y: 1, z: 1}
   lodProfiles:
   - maxActiveDistance: 200
@@ -199,7 +199,7 @@ MonoBehaviour:
   - maxActiveDistance: 1000
     lodModifier: 16
     mat: {fileID: 2100000, guid: 90354e575ea87bb46bc8187f014ecfa6, type: 2}
-  useCollisions: 1
+  useCollisions: 0
 --- !u!4 &8755250
 Transform:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.12e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 8.13e-43, y: 5.65e-43, z: 0, w: -3.5863016e-31}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
