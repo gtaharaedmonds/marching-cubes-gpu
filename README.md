@@ -4,7 +4,7 @@ Here is my implementation of Marching Cubes with C# and HLSL/Compute Shaders on 
 
 
 
-## Features:
+## Features
 
 - Limitless terrain generation for infinite worlds. GPU version can support a view distance of >500m at a respectable resolution
 
@@ -27,7 +27,7 @@ There are certain scenes that are higher definition which take more performance 
 
 
 
-## Notes: 
+## Notes
 
 GPU Marching Cubes src: Assets/Resources
 
